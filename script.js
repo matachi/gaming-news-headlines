@@ -45,12 +45,10 @@ var serenity = new function() {
         $.each(items, function(index, item) {
             var div = $('<div class="item"></div>');
             div.html(item.publishedDate + ' <a href="' + item.link +
-                '">' + item.title + '</a>' +
-                '<a href="serenity.show(' + index + ')">Next</a>');
+                '">' + item.title + '</a>' + item.content);
             div.css('z-index', 240 - index);
             div.click(function() {
-                //console.log(item.link);
-                div.css('z-index', 0);
+                div.detach();
             });
             container.append(div);
         });
