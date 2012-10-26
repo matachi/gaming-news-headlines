@@ -42,13 +42,18 @@ var serenity = new function() {
             return time2 - time1;
         });
         var container = $("#feed");
-        for (var i = 0; i < items.length; ++i) {
-            var item = items[i];
-            var div = $('<div></div>');
+        $.each(items, function(index, item) {
+            var div = $('<div class="item"></div>');
             div.html(item.publishedDate + ' <a href="' + item.link +
-                '">' + item.title + '</a>');
+                '">' + item.title + '</a>' +
+                '<a href="serenity.show(' + index + ')">Next</a>');
+            div.css('z-index', index);
+            div.click(function() {
+                //console.log(item.link);
+                div.css('z-index', 0);
+            });
             container.append(div);
-        }
+        });
     };
 }
 
