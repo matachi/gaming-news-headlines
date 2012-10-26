@@ -51,6 +51,7 @@ var serenity = new function() {
             ++i;
             div.html(items[i].publishedDate + ' <a href="' + items[i].link +
                 '">' + items[i].title + '</a>' + items[i].content);
+            window.scrollTo(0, 0);
         });
         container.append(div);
     };
