@@ -42,16 +42,17 @@ var serenity = new function() {
             return time2 - time1;
         });
         var container = $("#feed");
-        $.each(items, function(index, item) {
-            var div = $('<div class="item"></div>');
-            div.html(item.publishedDate + ' <a href="' + item.link +
-                '">' + item.title + '</a>' + item.content);
-            div.css('z-index', 240 - index);
-            div.click(function() {
-                div.detach();
-            });
-            container.append(div);
+
+        var div = $('<div class="item"></div>');
+        div.html(items[0].publishedDate + ' <a href="' + items[0].link +
+            '">' + items[0].title + '</a>' + items[0].content);
+        var i = 0
+        div.click(function() {
+            ++i;
+            div.html(items[i].publishedDate + ' <a href="' + items[i].link +
+                '">' + items[i].title + '</a>' + items[i].content);
         });
+        container.append(div);
     };
 }
 
