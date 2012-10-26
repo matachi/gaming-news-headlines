@@ -47,7 +47,7 @@ var serenity = new function() {
             div.html(item.publishedDate + ' <a href="' + item.link +
                 '">' + item.title + '</a>' +
                 '<a href="serenity.show(' + index + ')">Next</a>');
-            div.css('z-index', index);
+            div.css('z-index', 240 - index);
             div.click(function() {
                 //console.log(item.link);
                 div.css('z-index', 0);
