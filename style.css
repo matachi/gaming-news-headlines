@@ -1,15 +1,39 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 body, html {
-  background: #707f99;
+  background: #fffacc;
+  color: #222;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.25em;
   margin: 0;
 }
 
-.item {
-  background: #fffacc;
+#news-item {
   display: block;
+  height: 100%;
   padding: 20px;
   position: absolute;
+}
+
+#prev-item-link {
+  height: 33%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+#next-item-link {
+  bottom: 0;
+  height: 33%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+a {
+  color: #115;
+  text-decoration: none;
 }

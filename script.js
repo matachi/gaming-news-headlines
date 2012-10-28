@@ -41,19 +41,48 @@ var serenity = new function() {
             var time2 = new Date(b.publishedDate.substr(5)).getTime();
             return time2 - time1;
         });
-        var container = $("#feed");
+        var container = $("#news-item");
+        var nextLink = $("#next-item-link");
+        var prevLink = $("#prev-item-link");
 
-        var div = $('<div class="item"></div>');
-        div.html(items[0].publishedDate + ' <a href="' + items[0].link +
-            '">' + items[0].title + '</a>' + items[0].content);
+        //var div = $('<div class="item"></div>');
+        var subject = $('<h2><a href="' + items[0].link + '">' +
+            items[0].title + '</a></h2>');
+        container.append(subject);
+        var pubDate = $("<p>" + items[0].publishedDate + "</p>");
+        container.append(pubDate);
+        var content = $(items[0].content);
+        container.append(content);
+        //div.html(items[0].publishedDate + ' <h2><a href="' + items[0].link + '">' + items[0].title + '</a></h2>' + items[0].content);
         var i = 0
-        div.click(function() {
+        nextLink.click(function() {
             ++i;
-            div.html(items[i].publishedDate + ' <a href="' + items[i].link +
-                '">' + items[i].title + '</a>' + items[i].content);
+            container.html("");
+            subject = $('<h2><a href="' + items[i].link + '">' +
+                items[i].title + '</a></h2>');
+            container.append(subject);
+            pubDate = $("<p>" + items[i].publishedDate + "</p>");
+            container.append(pubDate);
+            content = $(items[i].content);
+            container.append(content);
             window.scrollTo(0, 0);
         });
-        container.append(div);
+        container.click(function() {
+            window.location = items[i].link;
+        });
+        prevLink.click(function() {
+            --i;
+            container.html("");
+            subject = $('<h2><a href="' + items[i].link + '">' +
+                items[i].title + '</a></h2>');
+            container.append(subject);
+            pubDate = $("<p>" + items[i].publishedDate + "</p>");
+            container.append(pubDate);
+            content = $(items[i].content);
+            container.append(content);
+            window.scrollTo(0, 0);
+        });
+        //container.append(div);
     };
 }
 
