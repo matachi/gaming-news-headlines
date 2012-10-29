@@ -45,7 +45,6 @@ var serenity = new function() {
         var nextLink = $("#next-item-link");
         var prevLink = $("#prev-item-link");
 
-        //var div = $('<div class="item"></div>');
         var subject = $('<h2><a href="' + items[0].link + '">' +
             items[0].title + '</a></h2>');
         container.append(subject);
@@ -53,7 +52,41 @@ var serenity = new function() {
         container.append(pubDate);
         var content = $(items[0].content);
         container.append(content);
-        //div.html(items[0].publishedDate + ' <h2><a href="' + items[0].link + '">' + items[0].title + '</a></h2>' + items[0].content);
+
+        var mouseDown = false;
+        var startPos = {
+            x: 0,
+            y: 0
+        };
+        var firstLoop = false;
+        var eventThrown = false;
+        container.mouseup(function() {
+            mouseDown = false;
+            firstLoop = false;
+            console.log("UP");
+        }).mousedown(function() {
+            mouseDown = true;
+            firstLoop = true;
+            startPos.x = 0;
+            startPos.y = 0;
+            console.log("DOWN");
+            eventThrown = false;
+        }).mousemove(function(event) {
+            if (mouseDown) {
+                if (firstLoop) {
+                    startPos.x = event.pageX;
+                    startPos.y = event.pageY;
+                    firstLoop = false;
+                }
+                if (!eventThrown) {
+                    if (startPos.x - event.pageX > 200) {
+                        console.log("slide event!!!!!!");
+                        eventThrown = true;
+                    }
+                }
+            }
+        });
+
         var i = 0
         nextLink.click(function() {
             ++i;
@@ -68,7 +101,7 @@ var serenity = new function() {
             window.scrollTo(0, 0);
         });
         container.click(function() {
-            window.location = items[i].link;
+            //window.location = items[i].link;
         });
         prevLink.click(function() {
             --i;
