@@ -53,6 +53,41 @@ var serenity = new function() {
         var content = $(items[0].content);
         container.append(content);
 
+        /**
+         * Functionality to change news item.
+         */
+        var i = 0
+        nextLink.click(function() {
+            ++i;
+            container.html("");
+            subject = $('<h2><a href="' + items[i].link + '">' +
+                items[i].title + '</a></h2>');
+            container.append(subject);
+            pubDate = $("<p>" + items[i].publishedDate + "</p>");
+            container.append(pubDate);
+            content = $(items[i].content);
+            container.append(content);
+            window.scrollTo(0, 0);
+        });
+        container.click(function() {
+            //window.location = items[i].link;
+        });
+        prevLink.click(function() {
+            --i;
+            container.html("");
+            subject = $('<h2><a href="' + items[i].link + '">' +
+                items[i].title + '</a></h2>');
+            container.append(subject);
+            pubDate = $("<p>" + items[i].publishedDate + "</p>");
+            container.append(pubDate);
+            content = $(items[i].content);
+            container.append(content);
+            window.scrollTo(0, 0);
+        });
+
+        /**
+         * Functionality to capture slide event.
+         */
         var mouseDown = false;
         var startPos = {
             x: 0,
@@ -82,13 +117,6 @@ var serenity = new function() {
                     if (startPos.x - event.pageX > 200) {
                         console.log("slide event!!!!!!");
                         eventThrown = true;
-                    }
-                }
-            }
-        });
-
-        var i = 0
-        nextLink.click(function() {
             ++i;
             container.html("");
             subject = $('<h2><a href="' + items[i].link + '">' +
@@ -99,23 +127,10 @@ var serenity = new function() {
             content = $(items[i].content);
             container.append(content);
             window.scrollTo(0, 0);
+                    }
+                }
+            }
         });
-        container.click(function() {
-            //window.location = items[i].link;
-        });
-        prevLink.click(function() {
-            --i;
-            container.html("");
-            subject = $('<h2><a href="' + items[i].link + '">' +
-                items[i].title + '</a></h2>');
-            container.append(subject);
-            pubDate = $("<p>" + items[i].publishedDate + "</p>");
-            container.append(pubDate);
-            content = $(items[i].content);
-            container.append(content);
-            window.scrollTo(0, 0);
-        });
-        //container.append(div);
     };
 }
 
